@@ -1,21 +1,29 @@
-import Home from "./screens/Home";
-import Login from "./screens/Login";
-import Signup from "./screens/Signup";
-import Profile from "./screens/Profile";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from "react";
+import Header from "./my_components/Header.jsx";
+import Home from "./screens/Home.jsx";
+import AddTask from "./screens/AddTask.jsx";
 
 function App() {
+  const [tasks, setTasks] = useState([]); // store all tasks here
+
   return (
-    <div>
-      <BrowserRouter>
+    <BrowserRouter>
+      <Header />
+
+      <div className="container mt-4">
         <Routes>
-          <Route path="/dashboard" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route
+            path="/"
+            element={<Home tasks={tasks} setTasks={setTasks} />}
+          />
+          <Route
+            path="/add-task"
+            element={<AddTask tasks={tasks} setTasks={setTasks} />}
+          />
         </Routes>
-      </BrowserRouter>
-    </div>
+      </div>
+    </BrowserRouter>
   );
 }
 
