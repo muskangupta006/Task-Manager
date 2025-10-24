@@ -18,6 +18,20 @@ function Home({ tasks, setTasks }) {
     setSelectedIndex(-1);
   };
 
+  const editTask = () => {
+    if (selectedIndex === -1) return;
+    const taskToEdit = tasks[selectedIndex];
+    const newTaskName = prompt("Edit Task Name:", taskToEdit.name);
+    const newDueDate = prompt("Edit Due Date (YYYY-MM-DD):", taskToEdit.dueDate);
+
+    if (newTaskName && newDueDate) {
+      const updated = tasks.map((task, i) =>
+        i === selectedIndex ? { ...task, name: newTaskName, dueDate: newDueDate } : task
+      );
+      setTasks(updated);
+    }
+  };
+
   return (
     <div className="container mt-3">
       <h2>Tasks</h2>
@@ -37,8 +51,13 @@ function Home({ tasks, setTasks }) {
       </div>
 
       {selectedIndex !== -1 && (
-        <div className="mt-3">
-          <Button onClick={deleteTask}>Delete</Button>
+        <div className="mt-3 d-flex gap-2">
+          <Button onClick={deleteTask} className="btn btn-danger rounded-pill">
+            Delete
+          </Button>
+          <Button onClick={editTask} className="btn btn-success rounded-pill">
+            Edit
+          </Button>
         </div>
       )}
     </div>
@@ -46,3 +65,4 @@ function Home({ tasks, setTasks }) {
 }
 
 export default Home;
+

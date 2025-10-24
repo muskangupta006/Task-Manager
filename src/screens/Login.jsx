@@ -88,7 +88,7 @@ export default function Login() {
 
   return (
     <div style={containerStyle}>
-      <div style={titleStyle}>Rose Academies</div>{" "}
+      <div style={titleStyle}>Muskan's Task Manager</div>{" "}
       <div>
         <label htmlFor="email" style={{ fontSize: "1.2rem", fontWeight: 750 }}>
           Username
